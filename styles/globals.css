@@ -1,0 +1,57 @@
+:root {
+  --background: rgb(19, 19, 19);
+  --grey: #4f5358;
+  --dark-grey: #303133;
+
+  --green: #62d153;
+  --red: #d65252;
+
+  --color: #fefefe;
+}
+* {
+  font-family: var(--root-font);
+}
+
+body {
+  margin: 0px;
+}
+html {
+  background: var(--background);
+}
+
+#start,
+#stop {
+  cursor: pointer;
+  height: 10px;
+  background: var(--dark-grey);
+  width: 40px;
+  border-radius: 10px 10px 0px 0px;
+  opacity: 0.6;
+}
+#start.on {
+  height: 6px !important;
+  background-color: var(--green) !important;
+  opacity: 1;
+}
+
+#stop.off {
+  height: 6px !important;
+  background-color: var(--red) !important;
+  opacity: 1;
+}
+
+#start-btn.on {
+  background-color: var(--green) !important;
+  color: var(--background)
+}
+
+#stop-btn.off {
+  background-color: var(--red) !important;
+  color: var(--background)
+
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
