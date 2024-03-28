@@ -45,7 +45,7 @@
   background: var(--grey);
   color: var(--background);
   font-weight: 800;
-  height:auto;
+  height: auto;
   padding: 2px 12px;
   margin-left: 12px;
   border-radius: 16px;
@@ -143,6 +143,46 @@
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
   bottom: 32px;
-  right: 32px
+  right: 32px;
 }
 
+@media only screen and (max-width: 550px) {
+  .clockDisplay {
+    padding: 12px 48px !important;
+    width: fit-content;
+  }
+
+  .clockDisplay h1 {
+    font-size: 64px;
+  }
+
+  .page {
+    gap: 42px;
+  }
+
+  .controls {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .clockDisplay {
+    padding: 12px 12px !important;
+    width: fit-content;
+  }
+
+  .clockButtons {
+    display: none;
+  }
+
+  .mode {
+    right: -16px;
+    bottom: -20px;
+  }
+  .clockDisplay h1 {
+    font-size: 32px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+}
