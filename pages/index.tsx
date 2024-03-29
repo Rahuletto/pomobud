@@ -4,10 +4,12 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [pomo, setPomo] = useState(25);
+  const [short, setShort] = useState(5);
+  const [long, setLong] = useState(15);
+
   const [mode, setMode] = useState<"pomodoro" | "long" | "short">("pomodoro");
   const [count, setCount] = useState(1);
-  const short = 5;
-  const long = 15;
+
   const longBreakInterval = 5;
 
   const [remainingTime, setRem] = useState(pomo * 60);
@@ -57,11 +59,26 @@ export default function Home() {
   }, [remainingTime, started]);
 
   useEffect(() => {
-    if (mode == "pomodoro") {
-      setRem(pomo * 60);
-      setTotal(pomo * 60);
+    switch (mode) {
+      case "pomodoro": {
+        setRem(pomo * 60);
+        setTotal(pomo * 60);
+        break;
+      }
+      case "short": {
+        setRem(short * 60);
+        setTotal(short * 60);
+        break;
+      }
+      case "long": {
+        setRem(long * 60);
+        setTotal(long * 60);
+        break;
+      }
+      default: {
+      }
     }
-  }, [pomo]);
+  }, [pomo, short, long]);
 
   useEffect(() => {
     var r: any = document.querySelector(":root");
@@ -70,12 +87,13 @@ export default function Home() {
     else if (mode == "pomodoro")
       r?.style?.setProperty("--green", "var(--green-cache)");
   }, [mode]);
+
   function reset() {
     setStarted(false);
+    setMode("pomodoro");
     setRem(pomo * 60);
     setTotal(pomo * 60);
     setCount(1);
-    setMode("pomodoro");
     handleProgress(pomo * 60);
   }
 
@@ -269,14 +287,35 @@ export default function Home() {
               Reset
             </button>
           </div>
-          <input
-            title="Customize the pomodoro timer"
-            className={styles.input}
-            type="number"
-            placeholder="Pomodoro timer"
-            value={pomo}
-            onChange={(e) => setPomo(Number(e.target.value))}
-          />
+          <div className={styles.settings}>
+            <input
+              id="pomo-input"
+              title="Customize the pomodoro timer"
+              className={styles.input}
+              type="number"
+              placeholder="Pomodoro timer"
+              value={pomo}
+              onChange={(e) => setPomo(Number(e.target.value))}
+            />
+            <input
+              id="short-input"
+              title="Customize the short break timer"
+              className={styles.input}
+              type="number"
+              placeholder="Short break"
+              value={short}
+              onChange={(e) => setShort(Number(e.target.value))}
+            />
+            <input
+              id="long-input"
+              title="Customize the long break timer"
+              className={styles.input}
+              type="number"
+              placeholder="Long break"
+              value={long}
+              onChange={(e) => setLong(Number(e.target.value))}
+            />
+          </div>
         </div>
 
         {/* Audios provided by Pixabay | https://pixabay.com/ */}

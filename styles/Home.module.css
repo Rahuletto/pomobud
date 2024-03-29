@@ -42,7 +42,6 @@
 }
 
 .count {
-  
   background: var(--green);
   color: var(--background);
   font-weight: 800;
@@ -129,26 +128,41 @@
   background-color: transparent !important;
 }
 
-.input {
+.settings {
   position: absolute;
-  -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield;
-  background-color: var(--dark-grey);
-  z-index: 2;
-  color: var(--color);
-  border: 0px none;
-  outline: none;
-  width: 50px;
-  font-size: 18px;
-  padding: 8px 12px;
-  border-radius: 12px;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
   bottom: 32px;
   right: 32px;
+  display: flex;
+  gap: 2px;
+}
+
+.input:nth-of-type(1) {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.input:nth-of-type(3) {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.input {
+  font-weight: 500;
+  text-align: center;
+  max-width: 24px;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  border: 2px solid transparent;
+  background-color: var(--dark-grey);
+  z-index: 2;
+  outline: none;
+  font-size: 18px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
 }
 
 @media only screen and (max-width: 550px) {
