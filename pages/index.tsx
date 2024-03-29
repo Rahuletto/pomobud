@@ -162,7 +162,7 @@ export default function Home() {
         <meta property="og:url" content="https://pomobud.vercel.app" />
         <meta property="og:title" content="Pomobud" />
         <meta property="og:color" content="#131313" />
-        <meta property="og:image" content="/favicon.svg" />
+        <meta property="og:image" content="/screenshot/wide.png" />
         <meta
           name="theme-color"
           content={
@@ -200,7 +200,7 @@ export default function Home() {
                 ? "/short.png"
                 : "/pomo.png"
               : !started && remainingTime == total
-              ? "/favicon.svg"
+              ? "/favicon.png"
               : "/pause.png"
           }
         />
