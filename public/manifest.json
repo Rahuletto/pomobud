@@ -1,0 +1,16 @@
+{
+  "name": "Pomobud",
+  "short_name": "Pomobud",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "128x128",
+      "type": "image/svg",
+      "purpose": "any maskable"
+    }
+  ],
+  "background_color": "#131313",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+import pwa from "next-pwa";
+const withPWA = pwa({
+  dest: "public",
+});
+
+const conf = {
   reactStrictMode: true,
 };
 
-export default nextConfig;
+export default withPWA(conf);

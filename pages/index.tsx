@@ -6,8 +6,8 @@ export default function Home() {
   const [pomo, setPomo] = useState(25);
   const [mode, setMode] = useState<"pomodoro" | "long" | "short">("pomodoro");
   const [count, setCount] = useState(1);
-  const short = 0.1;
-  const long = 0.2;
+  const short = 5;
+  const long = 15;
   const longBreakInterval = 5;
 
   const [remainingTime, setRem] = useState(pomo * 60);
@@ -130,6 +130,26 @@ export default function Home() {
   return (
     <>
       <Head>
+        <link
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="/favicon.svg"
+        ></link>
+        <link rel="manifest" href="/manifest.json" />
+
+        <meta name="application-name" content="Pomobud" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Pomobud" />
+        <meta
+          name="description"
+          content="Pomobud is a normal, simple yet minimal pomodoro timer (or) Tomato timer so you can focus and break that procrastination."
+        />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#131313" />
+        <meta name="msapplication-tap-highlight" content="no" />
+
         <title>
           {started
             ? `${mode.charAt(0).toUpperCase() + mode.slice(1)} - Pomobud`
@@ -147,8 +167,14 @@ export default function Home() {
         <meta property="og:color" content="#131313" />
         <meta
           name="theme-color"
-          content={started ?
-            (mode == "long" ? "#dec057" : mode == "short" ? "#5287d6" : "#62d153") : "#d65252"
+          content={
+            started
+              ? mode == "long"
+                ? "#dec057"
+                : mode == "short"
+                ? "#5287d6"
+                : "#62d153"
+              : "#d65252"
           }
         />
         <meta
@@ -169,12 +195,13 @@ export default function Home() {
           key="icon"
           rel="icon"
           href={
-            started ? 
-            (mode == "long"
-              ? "/long.png"
-              : mode == "short"
-              ? "/short.png"
-              : "/pomo.png") : "/pause.png"
+            started
+              ? mode == "long"
+                ? "/long.png"
+                : mode == "short"
+                ? "/short.png"
+                : "/pomo.png"
+              : "/pause.png"
           }
         />
       </Head>
