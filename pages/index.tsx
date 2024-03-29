@@ -162,6 +162,7 @@ export default function Home() {
         <meta property="og:url" content="https://pomobud.vercel.app" />
         <meta property="og:title" content="Pomobud" />
         <meta property="og:color" content="#131313" />
+        <meta property="og:image" content="/favicon.svg" />
         <meta
           name="theme-color"
           content={
