@@ -130,11 +130,6 @@ export default function Home() {
   return (
     <>
       <Head>
-        <link
-          rel="shortcut icon"
-          type="image/x-icon"
-          href="/favicon.svg"
-        ></link>
         <link rel="manifest" href="/manifest.json" />
 
         <meta name="application-name" content="Pomobud" />
@@ -153,6 +148,8 @@ export default function Home() {
         <title>
           {started
             ? `${mode.charAt(0).toUpperCase() + mode.slice(1)} - Pomobud`
+            : !started && remainingTime == total
+            ? "Pomobud"
             : `Paused - Pomobud`}
         </title>
         <meta name="title" content="Pomobud" />
@@ -201,6 +198,8 @@ export default function Home() {
                 : mode == "short"
                 ? "/short.png"
                 : "/pomo.png"
+              : !started && remainingTime == total
+              ? "/favicon.svg"
               : "/pause.png"
           }
         />

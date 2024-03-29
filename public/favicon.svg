@@ -1,18 +1,13 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="1024" height="1024" rx="512" fill="#131313"/>
-<rect x="447.15" y="100.998" width="106.693" height="44.3956" fill="#303133"/>
-<rect x="424.237" y="76.8986" width="152.521" height="40.8474" rx="11" fill="#4F5358"/>
-<rect x="222.002" y="231.347" width="555.728" height="555.728" rx="277.864" stroke="#96A1AE" stroke-width="31" stroke-miterlimit="4.28366" stroke-linejoin="round" stroke-dasharray="7 79"/>
+<rect x="35" y="35" width="954" height="954" rx="477" fill="#131313"/>
+<rect x="35" y="35" width="954" height="954" rx="477" stroke="#4F5358" stroke-width="70"/>
+<rect x="158.208" y="158.208" width="707.583" height="707.583" rx="353.792" stroke="white" stroke-opacity="0.46" stroke-width="68" stroke-miterlimit="4.28366" stroke-linejoin="round" stroke-dasharray="41 79"/>
 <g filter="url(#filter0_d_8_10)">
-<rect x="650.807" y="287.239" width="38.0408" height="327.56" rx="11" transform="rotate(37.3037 650.807 287.239)" fill="#D9D9D9"/>
+<rect x="701.625" y="183.913" width="110.277" height="412.463" rx="50" transform="rotate(37.3037 701.625 183.913)" fill="#D9D9D9"/>
 </g>
-<path d="M218.413 232.04C211.835 223.167 213.695 210.641 222.568 204.063L293.252 151.661C302.125 145.083 314.651 146.944 321.229 155.817L336.355 176.221L233.539 252.444L218.413 232.04Z" fill="#303133"/>
-<rect x="187.124" y="179.355" width="686.005" height="686.005" rx="343.003" stroke="#303133" stroke-width="49"/>
-<rect x="150.871" y="158.639" width="686.005" height="686.005" rx="343.003" stroke="#4F5358" stroke-width="49"/>
-<circle cx="500.497" cy="509.211" r="39.5808" fill="#303133"/>
-<circle cx="493.874" cy="505.111" r="39.5808" fill="#4F5358"/>
+<circle cx="512" cy="512" r="108.5" fill="#4F5358"/>
 <defs>
-<filter id="filter0_d_8_10" x="430.308" y="265.255" width="272.742" height="327.575" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d_8_10" x="445.327" y="177.584" width="350.345" height="407.577" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feMorphology radius="6" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_8_10"/>
