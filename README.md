@@ -7,8 +7,9 @@ Pomobud is a normal, simple yet minimal pomodoro timer (or) Tomato timer so you 
 Production Url: [https://pomobud.vercel.app](https://pomobud.vercel.app)
 
 > [!TIP]
-> Click <kbd>Space</kbd> to start or stop the timer
-> Click <kbd>R</kbd> to reset the timer
+> - Click <kbd>Space</kbd> to start or stop the timer
+> - Click <kbd>R</kbd> to reset the timer
 
-- Made with `NextJS` and `React`
-- Supports `PWA` with `100` score in [PageSpeed Insights](https://pagespeed.web.dev/analysis/https-pomobud-vercel-app/idpb4cjypg?form_factor=desktop)
+Made with `NextJS` and `React`
+
+Supports `PWA` with `100` score in [PageSpeed Insights](https://pagespeed.web.dev/analysis/https-pomobud-vercel-app/idpb4cjypg?form_factor=desktop)
