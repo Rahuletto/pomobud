@@ -147,8 +147,8 @@ export default function Home() {
         <meta property="og:color" content="#131313" />
         <meta
           name="theme-color"
-          content={
-            mode == "long" ? "#dec057" : mode == "short" ? "#5287d6" : "#62d153"
+          content={started ?
+            (mode == "long" ? "#dec057" : mode == "short" ? "#5287d6" : "#62d153") : "#d65252"
           }
         />
         <meta
