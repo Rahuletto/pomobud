@@ -195,13 +195,13 @@ export default function Home() {
           href={
             started
               ? mode == "long"
-                ? "/long.png"
+                ? "/icons/long.png"
                 : mode == "short"
-                ? "/short.png"
-                : "/pomo.png"
+                ? "/icons/short.png"
+                : "/icons/pomo.png"
               : !started && remainingTime == total
               ? "/favicon.png"
-              : "/pause.png"
+              : "/icons/pause.png"
           }
         />
       </Head>
@@ -249,22 +249,25 @@ export default function Home() {
             </span>
           </div>
           <div className={styles.controls}>
-            <button
-              id="start-btn"
-              className={started ? "on" : "off"}
-              disabled={started}
-              onClick={() => setStarted(true)}
-            >
-              Start
-            </button>
-            <button
-              id="stop-btn"
-              className={started ? "on" : "off"}
-              disabled={!started}
-              onClick={() => setStarted(false)}
-            >
-              Pause
-            </button>
+            {!started ? (
+              <button
+                id="start-btn"
+                className={started ? "off" : "on"}
+                disabled={started}
+                onClick={() => setStarted(true)}
+              >
+                Start
+              </button>
+            ) : (
+              <button
+                id="stop-btn"
+                className={started ? "off" : "on"}
+                disabled={!started}
+                onClick={() => setStarted(false)}
+              >
+                Pause
+              </button>
+            )}
             <button className={styles.reset} onClick={reset}>
               Reset
             </button>
@@ -280,8 +283,8 @@ export default function Home() {
         </div>
 
         {/* Audios provided by Pixabay | https://pixabay.com/ */}
-        <audio id="done" src="/beep.mp3" />
-        <audio id="win" src="/win.mp3" />
+        <audio id="done" src="/audio/beep.mp3" />
+        <audio id="win" src="/audio/win.mp3" />
       </main>
     </>
   );
