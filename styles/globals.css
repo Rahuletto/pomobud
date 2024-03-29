@@ -1,15 +1,23 @@
 :root {
-  --background: rgb(19, 19, 19);
+  --background: #131313;
   --grey: #4f5358;
   --dark-grey: #303133;
 
   --green: #62d153;
+  --green-cache: #62d153;
   --red: #d65252;
+  --blue: #5287d6;
+  --blue-shadow: #5287d656;
+  --gold: #dec057;
+  --gold-shadow: #dec05756;
+
 
   --color: #fefefe;
 }
+
 * {
   font-family: var(--root-font);
+  transition: 0.3s ease-out;
 }
 
 body {
@@ -17,6 +25,11 @@ body {
 }
 html {
   background: var(--background);
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
 }
 
 #start,
@@ -42,16 +55,37 @@ html {
 
 #start-btn.on {
   background-color: var(--green) !important;
-  color: var(--background)
+  color: var(--background);
 }
 
 #stop-btn.off {
   background-color: var(--red) !important;
-  color: var(--background)
-
+  color: var(--background);
 }
 
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed !important;
+}
+
+button:disabled:hover {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+}
+button:hover {
+  transform: scale(0.96);
+  -webkit-transform: scale(0.96);
+  -moz-transform: scale(0.96);
+  -ms-transform: scale(0.96);
+  -o-transform: scale(0.96);
+}
+
+#page-short {
+  box-shadow: 0px 0px 50px 0px var(--blue-shadow) inset;
+}
+#page-long {
+  box-shadow: 0px 0px 50px 0px var(--gold-shadow) inset;
 }
