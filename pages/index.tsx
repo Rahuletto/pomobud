@@ -249,25 +249,22 @@ export default function Home() {
             </span>
           </div>
           <div className={styles.controls}>
-            {!started ? (
-              <button
-                id="start-btn"
-                className={started ? "off" : "on"}
-                disabled={started}
-                onClick={() => setStarted(true)}
-              >
-                Start
-              </button>
-            ) : (
-              <button
-                id="stop-btn"
-                className={started ? "off" : "on"}
-                disabled={!started}
-                onClick={() => setStarted(false)}
-              >
-                Pause
-              </button>
-            )}
+            <button
+              id="start-btn"
+              className={started ? "on" : "off"}
+              disabled={started}
+              onClick={() => setStarted(true)}
+            >
+              Start
+            </button>
+            <button
+              id="stop-btn"
+              className={started ? "on" : "off"}
+              disabled={!started}
+              onClick={() => setStarted(false)}
+            >
+              Pause
+            </button>
             <button className={styles.reset} onClick={reset}>
               Reset
             </button>
