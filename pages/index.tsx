@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [pomo, setPomo] = useState(25);
-  const [mode, setMode] = useState("pomodoro");
+  const [mode, setMode] = useState<"pomodoro" | "long" | "short">("pomodoro");
   const [count, setCount] = useState(1);
-  const short = 5;
-  const long = 15;
+  const short = 0.1;
+  const long = 0.2;
   const longBreakInterval = 5;
 
   const [remainingTime, setRem] = useState(pomo * 60);
@@ -57,10 +57,19 @@ export default function Home() {
   }, [remainingTime, started]);
 
   useEffect(() => {
-    setRem(pomo * 60);
-    setTotal(pomo * 60);
+    if (mode == "pomodoro") {
+      setRem(pomo * 60);
+      setTotal(pomo * 60);
+    }
   }, [pomo]);
 
+  useEffect(() => {
+    var r: any = document.querySelector(":root");
+    if (mode == "short") r?.style?.setProperty("--green", "var(--blue)");
+    else if (mode == "long") r?.style?.setProperty("--green", "var(--gold)");
+    else if (mode == "pomodoro")
+      r?.style?.setProperty("--green", "var(--green-cache)");
+  }, [mode]);
   function reset() {
     setStarted(false);
     setRem(pomo * 60);
@@ -88,17 +97,24 @@ export default function Home() {
 
   function handleChange() {
     if (remainingTime <= 0) {
+      const audio: HTMLAudioElement | null =
+        document.querySelector("audio#done");
+      const win: HTMLAudioElement | null = document.querySelector("audio#win");
+
       if (mode === "pomodoro") {
         if ((count + 1) % longBreakInterval === 0) {
+          if (win) win.play();
           setMode("long");
           setRem(long * 60);
           setTotal(long * 60);
         } else {
+          if (win) win.play();
           setMode("short");
           setRem(short * 60);
           setTotal(short * 60);
         }
       } else {
+        if (audio) audio.play();
         if (mode === "long") {
           setCount(1);
         }
@@ -106,6 +122,7 @@ export default function Home() {
         if (mode == "short") setCount((e) => e + 1);
         setMode("pomodoro");
         setRem(pomo * 60);
+        setTotal(pomo * 60);
       }
     } else setRem((r) => r - 1);
   }
@@ -113,7 +130,53 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Pomodoro</title>
+        <title>
+          {started
+            ? `${mode.charAt(0).toUpperCase() + mode.slice(1)} - Pomobud`
+            : `Paused - Pomobud`}
+        </title>
+        <meta name="title" content="Pomobud" />
+        <meta
+          name="description"
+          content="Pomobud is a normal, simple yet minimal pomodoro timer (or) Tomato timer so you can focus and break that procrastination."
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pomobud.vercel.app" />
+        <meta property="og:title" content="Pomobud" />
+        <meta property="og:color" content="#131313" />
+        <meta
+          name="theme-color"
+          content={
+            mode == "long" ? "#dec057" : mode == "short" ? "#5287d6" : "#62d153"
+          }
+        />
+        <meta
+          property="og:description"
+          content="Pomobud is a normal, simple yet minimal pomodoro timer (or) Tomato timer so you can focus and break that procrastination."
+        />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://pomobud.vercel.app" />
+        <meta property="twitter:title" content="Pomobud" />
+
+        <meta
+          property="twitter:description"
+          content="Pomobud is a normal, simple yet minimal pomodoro timer (or) Tomato timer so you can focus and break that procrastination."
+        />
+
+        <link
+          key="icon"
+          rel="icon"
+          href={
+            started ? 
+            (mode == "long"
+              ? "/long.png"
+              : mode == "short"
+              ? "/short.png"
+              : "/pomo.png") : "/pause.png"
+          }
+        />
       </Head>
 
       <main
@@ -121,9 +184,17 @@ export default function Home() {
         data-inner-circle-color="red"
         data-bg-color="black"
         data-percentage="0"
-        data-progress-color={started ? "var(--green)" : "var(--red)"}
+        data-progress-color={
+          started
+            ? mode === "pomodoro"
+              ? "var(--green)"
+              : mode === "short"
+              ? "var(--blue)"
+              : "var(--gold)"
+            : "var(--red)"
+        }
       >
-        <div className={styles.page}>
+        <div id={started ? `page-${mode}` : ""} className={styles.page}>
           <div className={styles.clock}>
             <div className={styles.clockButtons}>
               <div
@@ -180,6 +251,10 @@ export default function Home() {
             onChange={(e) => setPomo(Number(e.target.value))}
           />
         </div>
+
+        {/* Audios provided by Pixabay | https://pixabay.com/ */}
+        <audio id="done" src="/beep.mp3" />
+        <audio id="win" src="/win.mp3" />
       </main>
     </>
   );
