@@ -1,9 +1,20 @@
 .page {
   height: -webkit-fill-available;
+  height: -moz-available;
+  height: fill-available;
   background-color: var(--background);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   gap: 32px;
   border-radius: 6px;
@@ -20,6 +31,9 @@
 
 .clock {
   position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 
@@ -64,7 +78,11 @@
   -o-border-radius: 200px;
   width: 350px;
   border: 12px solid var(--dark-grey);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   position: relative;
 
@@ -89,19 +107,29 @@
 
 .clockDisplay h1 {
   color: var(--color);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin: 0px;
   font-size: 84px;
 }
 
 .clockButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   gap: 64px;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
   align-items: flex-end;
 }
 
 .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 16px;
 }
@@ -132,6 +160,8 @@
   position: absolute;
   bottom: 32px;
   right: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 2px;
 }
@@ -168,6 +198,8 @@
 @media only screen and (max-width: 550px) {
   .clockDisplay {
     padding: 12px 48px !important;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
   }
 
@@ -180,7 +212,10 @@
   }
 
   .controls {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
 }
@@ -188,6 +223,8 @@
 @media only screen and (max-width: 340px) {
   .clockDisplay {
     padding: 12px 12px !important;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
   }
 
@@ -196,12 +233,16 @@
   }
 
   .mode {
+    width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
     right: -16px;
     bottom: -20px;
   }
   .clockDisplay h1 {
     font-size: 32px;
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
     writing-mode: vertical-rl;
     text-orientation: upright;
   }

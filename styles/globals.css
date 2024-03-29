@@ -16,6 +16,8 @@
 
 * {
   font-family: var(--root-font);
+  -webkit-transition: 0.3s ease-out;
+  -o-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
 
@@ -78,6 +80,8 @@ button:disabled {
 }
 
 button:disabled:hover {
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
   transform: scale(0.9);
 }
 button:hover {
@@ -89,9 +93,11 @@ button:hover {
 }
 
 #page-short {
+  -webkit-box-shadow: 0px 0px 50px 0px var(--blue-shadow) inset;
   box-shadow: 0px 0px 50px 0px var(--blue-shadow) inset;
 }
 #page-long {
+  -webkit-box-shadow: 0px 0px 50px 0px var(--gold-shadow) inset;
   box-shadow: 0px 0px 50px 0px var(--gold-shadow) inset;
 }
 
