@@ -34,23 +34,32 @@ export default function Home() {
     !started ? null : 1000
   );
 
-  const handleClose = () => {
+  const handleConfig = (type?: "open" | "close") => {
     const dialog = document.getElementById("dialog") as HTMLDialogElement;
-    dialog.classList.remove("close");
-    dialog?.showModal();
+
+    if (dialog.open || type == "open") {
+      (dialog as HTMLDialogElement).classList.add("close");
+      setTimeout(() => (dialog as HTMLDialogElement)?.close(), 500);
+    } else if (type == "close" || !dialog.open) {
+      dialog.classList.remove("close");
+      dialog?.showModal();
+    }
   };
+
   useEffect(() => {
+    const dialog = document.getElementById("dialog") as HTMLDialogElement;
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.keyCode === 32) {
         setStarted((e) => !e);
       } else if (event.key === "r") {
         reset();
+      } else if (event.key === "c") {
+        handleConfig();
       }
     };
 
-    const dialog = document.getElementById("dialog");
-
-    function handleBackdrop(event: MouseEvent) {
+    const handleBackdrop = (event: MouseEvent) => {
       let rect = (event.target as HTMLElement)?.getBoundingClientRect();
 
       if (
@@ -59,10 +68,9 @@ export default function Home() {
         rect.top > event.clientY ||
         rect.bottom < event.clientY
       ) {
-        (dialog as HTMLDialogElement).classList.add("close");
-        setTimeout(() => (dialog as HTMLDialogElement)?.close(), 500);
+        handleConfig("close");
       }
-    }
+    };
 
     window.addEventListener("keydown", handleKeyDown);
 
@@ -311,7 +319,10 @@ export default function Home() {
               Reset
             </button>
           </div>
-          <button className={styles.configButton} onClick={() => handleClose()}>
+          <button
+            className={styles.configButton}
+            onClick={() => handleConfig()}
+          >
             <svg
               width="20px"
               height="20px"

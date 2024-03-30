@@ -9,6 +9,7 @@ Production Url: [https://pomobud.vercel.app](https://pomobud.vercel.app)
 > [!TIP]
 > - Click <kbd>Space</kbd> to start or stop the timer
 > - Click <kbd>R</kbd> to reset the timer
+> - Click <kbd>C</kbd> to change config
 
 Made with `NextJS` and `React`
 
