@@ -33,7 +33,7 @@ export default function Home() {
     },
     !started ? null : 1000
   );
-
+  
   const handleConfig = (type?: "open" | "close") => {
     const dialog = document.getElementById("dialog") as HTMLDialogElement;
 
@@ -43,6 +43,19 @@ export default function Home() {
     } else if (type == "close" || !dialog.open) {
       dialog.classList.remove("close");
       dialog?.showModal();
+    }
+  };
+
+  const handleBackdrop = (event: MouseEvent) => {
+    let rect = (event.target as HTMLElement)?.getBoundingClientRect();
+
+    if (
+      rect.left > event.clientX ||
+      rect.right < event.clientX ||
+      rect.top > event.clientY ||
+      rect.bottom < event.clientY
+    ) {
+      handleConfig("close");
     }
   };
 
@@ -56,19 +69,6 @@ export default function Home() {
         reset();
       } else if (event.key === "c") {
         handleConfig();
-      }
-    };
-
-    const handleBackdrop = (event: MouseEvent) => {
-      let rect = (event.target as HTMLElement)?.getBoundingClientRect();
-
-      if (
-        rect.left > event.clientX ||
-        rect.right < event.clientX ||
-        rect.top > event.clientY ||
-        rect.bottom < event.clientY
-      ) {
-        handleConfig("close");
       }
     };
 
@@ -387,6 +387,14 @@ export default function Home() {
   );
 }
 
+/**
+ * Description placeholder
+ * @date 3/30/2024 - 9:12:20 AM
+ *
+ * @param {*} callback
+ * @param {(number | null)} delay
+ * @returns {*}
+ */
 function useInterval(callback: any, delay: number | null) {
   const intRef: any = useRef();
   const cb = useRef(callback);
