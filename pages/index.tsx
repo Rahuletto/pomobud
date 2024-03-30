@@ -15,6 +15,8 @@ export default function Home() {
   const [remainingTime, setRem] = useState(pomo * 60);
   const [total, setTotal] = useState(pomo * 60);
 
+  const [canUpdate, setUpdate] = useState(false);
+
   const [min, setMin] = useState(
     Math.floor(remainingTime / 60) < 0 ? 0 : Math.floor(remainingTime / 60)
   );
@@ -33,7 +35,7 @@ export default function Home() {
     },
     !started ? null : 1000
   );
-  
+
   const handleConfig = (type?: "open" | "close") => {
     const dialog = document.getElementById("dialog") as HTMLDialogElement;
 
@@ -59,28 +61,73 @@ export default function Home() {
     }
   };
 
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.keyCode === 32) {
+      setStarted((e) => !e);
+    } else if (event.key === "r") {
+      reset();
+    } else if (event.key === "c") {
+      handleConfig();
+    }
+  };
+
+  const loader = async () => {
+    const data = JSON.parse(localStorage.getItem("pomodoro") || "{}");
+    if (data && data.pomo) {
+      setStarted(data.started);
+      setPomo(data.pomo);
+      setShort(data.short);
+      setLong(data.long);
+      setRem(data.remainingTime);
+      setMode(data.mode);
+      setCount(data.count);
+      setTotal(data.total);
+      setMin(
+        Math.floor(data.remainingTime / 60) < 0
+          ? 0
+          : Math.floor(data.remainingTime / 60)
+      );
+      setSec(data.remainingTime % 60 < 0 ? 0 : data.remainingTime % 60);
+      handleProgress();
+    }
+  };
+
   useEffect(() => {
     const dialog = document.getElementById("dialog") as HTMLDialogElement;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.keyCode === 32) {
-        setStarted((e) => !e);
-      } else if (event.key === "r") {
-        reset();
-      } else if (event.key === "c") {
-        handleConfig();
-      }
-    };
 
     window.addEventListener("keydown", handleKeyDown);
 
     dialog?.addEventListener("click", handleBackdrop);
 
+    loader();
+
+    setTimeout(() => {
+      setUpdate(true);
+    }, 10);
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+
       dialog?.removeEventListener("click", handleBackdrop);
     };
   }, []);
+
+  useEffect(() => {
+    if (canUpdate) {
+      const obj = {
+        pomo: pomo,
+        short: short,
+        long: long,
+        remainingTime: remainingTime,
+        mode: mode,
+        count: count,
+        total: total,
+        started: started,
+      };
+
+      localStorage.setItem("pomodoro", JSON.stringify(obj));
+    }
+  }, [pomo, short, long, remainingTime, mode, count, total, started]);
 
   useEffect(() => {
     setMin(
@@ -91,23 +138,25 @@ export default function Home() {
   }, [remainingTime, started]);
 
   useEffect(() => {
-    switch (mode) {
-      case "pomodoro": {
-        setRem(pomo * 60);
-        setTotal(pomo * 60);
-        break;
-      }
-      case "short": {
-        setRem(short * 60);
-        setTotal(short * 60);
-        break;
-      }
-      case "long": {
-        setRem(long * 60);
-        setTotal(long * 60);
-        break;
-      }
-      default: {
+    if (canUpdate) {
+      switch (mode) {
+        case "pomodoro": {
+          setRem(pomo * 60);
+          setTotal(pomo * 60);
+          break;
+        }
+        case "short": {
+          setRem(short * 60);
+          setTotal(short * 60);
+          break;
+        }
+        case "long": {
+          setRem(long * 60);
+          setTotal(long * 60);
+          break;
+        }
+        default: {
+        }
       }
     }
   }, [pomo, short, long]);
@@ -180,7 +229,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/pwa.json" />
 
         <meta name="application-name" content="Pomobud" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,7 +377,7 @@ export default function Home() {
               height="20px"
               fill="currentColor"
               stroke="currentColor"
-              stroke-width="0"
+              strokeWidth="0"
               viewBox="0 0 512 512"
               xmlns="http://www.w3.org/2000/svg"
             >

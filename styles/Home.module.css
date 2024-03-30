@@ -1,7 +1,7 @@
 .page {
   height: -webkit-fill-available;
   height: -moz-available;
-  height: fill-available;
+  height: stretch;
   background-color: var(--background);
   display: -webkit-box;
   display: -ms-flexbox;

@@ -2,7 +2,9 @@
   --background: #131313;
   --grey: #4f5358;
   --dark-grey: #303133;
-
+  min-width: 400px;
+  min-height: 400px;
+  overflow: hidden;
   --green: #62d153;
   --green-cache: #62d153;
   --red: #d65252;
