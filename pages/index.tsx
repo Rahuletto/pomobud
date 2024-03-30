@@ -139,27 +139,24 @@ export default function Home() {
 
   useEffect(() => {
     if (canUpdate) {
-      switch (mode) {
-        case "pomodoro": {
-          setRem(pomo * 60);
-          setTotal(pomo * 60);
-          break;
-        }
-        case "short": {
-          setRem(short * 60);
-          setTotal(short * 60);
-          break;
-        }
-        case "long": {
-          setRem(long * 60);
-          setTotal(long * 60);
-          break;
-        }
-        default: {
-        }
-      }
+      setRem(pomo * 60);
+      setTotal(pomo * 60);
     }
-  }, [pomo, short, long]);
+  }, [pomo]);
+
+  useEffect(() => {
+    if (canUpdate) {
+      setRem(short * 60);
+      setTotal(short * 60);
+    }
+  }, [short]);
+
+  useEffect(() => {
+    if (canUpdate) {
+      setRem(long * 60);
+      setTotal(long * 60);
+    }
+  }, [long]);
 
   useEffect(() => {
     var r: any = document.querySelector(":root");
