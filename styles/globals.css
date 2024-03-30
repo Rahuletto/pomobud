@@ -33,6 +33,20 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
+.close, .close::backdrop {
+  animation: fadeout 0.1s ease-in forwards !important;
+  -webkit-animation: fadeout 0.1s ease-in forwards !important;
+}
+
+@keyframes fadeout{
+  0%{
+    opacity:1;
+  }
+  100%{
+    opacity:0;
+  }
+}
+
 #start,
 #stop {
   cursor: pointer;
